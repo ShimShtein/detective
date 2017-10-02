@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'rack'
+require 'sinatra'
+require_relative '../lib/detective/web/endpoint'
+
+cops_patterns = ARGV.clone
+
+app = Detective::Web::Endpoint.new
+app.settings.set(:cops_patterns, cops_patterns)
+Rack::Handler::WEBrick.run app
